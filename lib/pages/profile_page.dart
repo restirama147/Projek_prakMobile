@@ -113,12 +113,9 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Profile Cards
             ...profileData
                 .map((profile) => _buildProfileCard(profile))
                 .toList(),
-
-            // Kesan & Pesan Section
             _buildKesanPesanSection(),
           ],
         ),
@@ -157,7 +154,6 @@ class ProfilePage extends StatelessWidget {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              // Profile Picture and Basic Info
               Row(
                 children: [
                   Container(
@@ -218,10 +214,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-
               const SizedBox(height: 24),
-
-              // Social Media Links
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -244,17 +237,12 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-
-                    // Instagram
                     _buildInfoCard(
                       icon: Icons.camera_alt,
                       label: profile['instagram']!,
                       onTap: () => _launchURL(profile['instagramUrl']!),
                     ),
-
                     const SizedBox(height: 8),
-
-                    // GitHub
                     _buildInfoCard(
                       icon: Icons.code,
                       label: profile['github']!,
@@ -270,7 +258,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // Method baru untuk Kesan & Pesan yang terpisah
   Widget _buildKesanPesanSection() {
     return Card(
       elevation: 8,
@@ -293,7 +280,6 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
               Row(
                 children: [
                   Container(
@@ -334,9 +320,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-
               const SizedBox(height: 24),
-
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -387,24 +371,20 @@ class ProfilePage extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: ListTile(
           leading: Icon(icon, color: const Color.fromARGB(255, 14, 61, 127)),
-          title: Text(label), // Menampilkan nama label
+          title: Text(label), 
           trailing: const Icon(Icons.open_in_new),
         ),
       ),
     );
   }
 
-  // Method untuk build profile image dengan fallback
   Widget _buildProfileImage(Map<String, String> profile) {
     final imagePath = profile['profileImage'];
-
-    // Untuk development, gunakan icon dengan initial nama
     if (imagePath == null || imagePath.isEmpty) {
       return _buildInitialAvatar(profile['name']!);
     }
 
     try {
-      // Coba load image dari assets
       return ClipOval(
         child: Image.asset(
           imagePath,
@@ -423,9 +403,7 @@ class ProfilePage extends StatelessWidget {
     }
   }
 
-  // Method untuk membuat avatar dengan initial nama
   Widget _buildInitialAvatar(String name) {
-    // Ambil initial dari nama
     String initial = name.isNotEmpty ? name[0].toUpperCase() : '?';
 
     // Warna background berdasarkan nama

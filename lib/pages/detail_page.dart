@@ -21,14 +21,12 @@ class _DetailPageState extends State<DetailPage> {
     _productFuture = AppService.getDataId(widget.id);
   }
 
-  // Method untuk refresh data setelah edit
   void _refreshProductData() {
     setState(() {
       _productFuture = AppService.getDataId(widget.id);
     });
   }
 
-  // Navigate to edit page
   Future<void> _navigateToEdit(ModelApp product) async {
     final result = await Navigator.push(
       context,
@@ -36,8 +34,6 @@ class _DetailPageState extends State<DetailPage> {
         builder: (context) => EditProductPage(product: product),
       ),
     );
-
-    // Refresh data jika ada perubahan
     if (result != null) {
       _refreshProductData();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -79,7 +75,6 @@ class _DetailPageState extends State<DetailPage> {
     }
   }
 
-  // Show delete confirmation dialog
   Future<bool> _showDeleteConfirmDialog(ModelApp product) async {
     return await showDialog<bool>(
           context: context,
@@ -210,19 +205,16 @@ class _DetailPageState extends State<DetailPage> {
               backgroundColor: Color.fromARGB(255, 14, 61, 127),
               iconTheme: const IconThemeData(color: Colors.white),
               actions: [
-                // Tombol Edit di AppBar
                 IconButton(
                   icon: const Icon(Icons.edit, color: Colors.white),
                   onPressed: () => _navigateToEdit(product),
                   tooltip: 'Edit Product',
                 ),
-                // Tombol Delete di AppBar
                 IconButton(
                   icon: const Icon(Icons.delete, color: Colors.white),
                   onPressed: () => _deleteProduct(product),
                   tooltip: 'Delete Product',
                 ),
-                // Tombol Refresh
                 IconButton(
                   icon: const Icon(Icons.refresh, color: Colors.white),
                   onPressed: _refreshProductData,
@@ -282,8 +274,6 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           const SizedBox(height: 16),
-
-          // Product Info Card
           Card(
             elevation: 4,
             shape: RoundedRectangleBorder(
@@ -308,19 +298,11 @@ class _DetailPageState extends State<DetailPage> {
                     "\Rp ${product.price?.toStringAsFixed(2) ?? '-'}",
                   ),
                   _buildDetailRow("Rating", "${product.rating ?? 0}"),
-                  if (product.rating != null)
-                    _buildDetailRow(
-                      "Reviews",
-                      "${product.rating!} reviews",
-                    ),
                 ],
               ),
             ),
           ),
-
           const SizedBox(height: 16),
-
-          // Description Card
           Card(
             elevation: 4,
             shape: RoundedRectangleBorder(
@@ -344,10 +326,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           ),
-
           const SizedBox(height: 20),
-
-          // Action Buttons
           Column(
             children: [
               Row(
@@ -372,9 +351,7 @@ class _DetailPageState extends State<DetailPage> {
                       onPressed: () => _navigateToEdit(product),
                     ),
                   ),
-
                   const SizedBox(width: 12),
-
                   Expanded(
                     child: ElevatedButton.icon(
                       icon: const Icon(Icons.delete, color: Colors.white),
@@ -397,10 +374,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ],
               ),
-
               const SizedBox(height: 12),
-
-              // Row 2: Open Image Button
               if (product.image != null)
                 SizedBox(
                   width: double.infinity,
@@ -435,7 +409,6 @@ class _DetailPageState extends State<DetailPage> {
                 ),
             ],
           ),
-
           const SizedBox(height: 20),
         ],
       ),

@@ -84,8 +84,7 @@ class _LoginPageState extends State<LoginPage> {
       });
       return;
     }
-
-    // Successful login
+    
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('is_logged_in', true);
     await prefs.setString('username', username);

@@ -30,17 +30,6 @@ class _EditProductPageState extends State<EditProductPage> {
     'aksesoris'
   ];
 
-// @override
-// void initState() {
-//   super.initState();
-//   // Atur nilai awal _selectedCategory hanya jika ada di daftar
-//   if (categories.contains(widget.product.category)) {
-//     _selectedCategory = widget.product.category;
-//   } else {
-//     _selectedCategory = null;
-//   }
-// }
-
   @override
   void initState() {
     super.initState();
@@ -87,7 +76,6 @@ class _EditProductPageState extends State<EditProductPage> {
       );
 
       if (mounted) {
-        // Show success dialog with updated product data
         _showSuccessDialog(updatedProduct);
       }
     } catch (e) {
@@ -190,10 +178,7 @@ class _EditProductPageState extends State<EditProductPage> {
           actions: [
             TextButton(
               onPressed: () {
-                // Tutup dialog
                 Navigator.of(context).pop();
-
-                // Kembali ke home page dengan cara yang aman
                 _navigateToHomePage();
               },
               style: TextButton.styleFrom(
@@ -215,21 +200,17 @@ class _EditProductPageState extends State<EditProductPage> {
     );
   }
 
-  // Navigate to home page with proper navigation
   void _navigateToHomePage() async {
-    // Dapatkan username dari SharedPreferences atau context sebelumnya
     final username = await _getUsername();
 
     if (mounted) {
-      // Pop sampai ke home page atau replace dengan home page baru
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => HomePage(username: username)),
-        (route) => false, // Remove all previous routes
+        (route) => false,
       );
     }
   }
 
-  // Get username from SharedPreferences
   Future<String> _getUsername() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -295,7 +276,6 @@ class _EditProductPageState extends State<EditProductPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Product ID Info
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -318,10 +298,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
-                  // Title Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -345,10 +322,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Price Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -380,9 +354,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-// Rating Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -416,9 +388,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-                  // Category Dropdown
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -445,10 +415,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Image URL Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -472,10 +439,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Description Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -500,10 +464,7 @@ class _EditProductPageState extends State<EditProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 32),
-
-                  // Update Button
                   Container(
                     height: 55,
                     decoration: BoxDecoration(

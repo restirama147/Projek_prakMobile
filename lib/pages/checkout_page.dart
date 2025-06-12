@@ -311,8 +311,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           'Checkout Berhasil',
                           message,
                         );
-
-                        // Hapus item dari Hive cart
                         final keysToRemove = cartBox.keys.where((key) {
                           final item = cartBox.get(key);
                           return cartItems.any(

@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage> {
     'aksesoris'
   ];
 
-  // Controllers for CRUD forms
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -86,7 +85,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  // Refresh product list
   void _refreshProducts() {
     setState(() {
       _productList = AppService.getData();
@@ -208,7 +206,6 @@ class _HomePageState extends State<HomePage> {
               onPressed: _navigateToAddProduct,
               tooltip: 'Add New Product',
             ),
-            // Refresh Button
             IconButton(
               icon: const Icon(Icons.refresh),
               color: Colors.white,
@@ -430,7 +427,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text("${item.category}"),
                 Text(
-                  "\Rp${item.price?.toStringAsFixed(2)}",
+                  "\Rp ${item.price?.toStringAsFixed(2)}",
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
@@ -479,13 +476,12 @@ class _HomePageState extends State<HomePage> {
             onTap: () async {
               if (item.id != null) {
                 final result = await Navigator.push(
-  context,
-  MaterialPageRoute(builder: (_) => DetailPage(id: item.id!)),
-);
-if (result == true) {
-  _refreshProducts(); // refresh jika produk dihapus
-}
-
+                  context,
+                  MaterialPageRoute(builder: (_) => DetailPage(id: item.id!)),
+                );
+                if (result == true) {
+                  _refreshProducts();
+                }
               }
             },
           ),

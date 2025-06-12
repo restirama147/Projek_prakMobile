@@ -46,8 +46,6 @@ class _CartPageState extends State<CartPage> {
 
   String getConvertedPrice(String priceStr) {
     double basePrice = double.tryParse(priceStr) ?? 0.0;
-
-    // Jangan konversi kalau sudah IDR
     if (selectedCurrency == 'IDR') {
       return 'Rp${basePrice.toStringAsFixed(0)}';
     }
@@ -187,16 +185,11 @@ class _CartPageState extends State<CartPage> {
                                   ),
                                 ),
                               );
-
                               if (result == true) {
-                                // Hapus item yang dicheckout dari Hive
                                 for (var key in selectedKeys) {
                                   await cartBox.delete(key);
                                 }
-
                                 selectedKeys.clear();
-
-                                // Navigasi ke HomePage dan pindah ke tab Notifikasi
                                 if (!mounted) return;
                                 Navigator.pushAndRemoveUntil(
                                   context,

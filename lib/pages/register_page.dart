@@ -116,8 +116,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Icon(Icons.person_add_alt_1, size: 60, color: blueBg),
-                    // const SizedBox(height: 12),
                     Text(
                       'Create New Account',
                       style: TextStyle(

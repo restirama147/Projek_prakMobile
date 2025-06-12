@@ -56,7 +56,6 @@ class _AddProductPageState extends State<AddProductPage> {
       );
 
       if (mounted) {
-        // Show success dialog with created product data
         _showSuccessDialog(newProduct);
       }
     } catch (e) {
@@ -121,7 +120,7 @@ class _AddProductPageState extends State<AddProductPage> {
                     children: [
                       _buildDataRow('ID', '${newProduct.id}'),
                       _buildDataRow('Title', newProduct.title ?? ''),
-                      _buildDataRow('Price', '\$${newProduct.price}'),
+                      _buildDataRow('Price', '\Rp ${newProduct.price}'),
                       _buildDataRow(
                         'Description',
                         newProduct.description ?? '',
@@ -158,10 +157,7 @@ class _AddProductPageState extends State<AddProductPage> {
           actions: [
             TextButton(
               onPressed: () {
-                // Tutup dialog
                 Navigator.of(context).pop();
-
-                // Kembali ke home page dengan cara yang aman
                 _navigateToHomePage();
               },
               style: TextButton.styleFrom(
@@ -183,21 +179,17 @@ class _AddProductPageState extends State<AddProductPage> {
     );
   }
 
-  // Navigate to home page with proper navigation
   void _navigateToHomePage() async {
-    // Dapatkan username dari SharedPreferences
     final username = await _getUsername();
 
     if (mounted) {
-      // Push dan hapus semua route sebelumnya
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => HomePage(username: username)),
-        (route) => false, // Remove all previous routes
+        (route) => false,
       );
     }
   }
 
-  // Get username from SharedPreferences
   Future<String> _getUsername() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -264,8 +256,6 @@ class _AddProductPageState extends State<AddProductPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 20),
-
-                  // Title Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -289,10 +279,7 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Price Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -303,7 +290,7 @@ class _AddProductPageState extends State<AddProductPage> {
                       child: TextFormField(
                         controller: _priceController,
                         decoration: const InputDecoration(
-                          labelText: 'Price (\$)',
+                          labelText: 'Price (\Rp )',
                           prefixIcon: Icon(Icons.attach_money),
                           border: InputBorder.none,
                         ),
@@ -324,11 +311,8 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
                   const SizedBox(height: 16),
-
-// Rating Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -362,10 +346,7 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Category Dropdown
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -392,10 +373,7 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Image URL Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -419,10 +397,7 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
-                  // Description Field
                   Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -447,10 +422,7 @@ class _AddProductPageState extends State<AddProductPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 32),
-
-                  // Submit Button
                   Container(
                     height: 55,
                     decoration: BoxDecoration(
@@ -492,7 +464,6 @@ class _AddProductPageState extends State<AddProductPage> {
                             ),
                     ),
                   ),
-
                   const SizedBox(height: 20),
                 ],
               ),
