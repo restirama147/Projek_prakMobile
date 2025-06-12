@@ -1,0 +1,32 @@
+### Get all products
+GET https://fakestoreapi.com/products
+
+### Get product by ID
+GET https://fakestoreapi.com/products/1
+
+### Create new product
+POST https://fakestoreapi.com/products
+Content-Type: application/json
+
+{
+    "title": "test product",
+    "price": 13.5,
+    "description": "lorem ipsum set",
+    "image": "https://i.pravatar.cc",
+    "category": "electronic"
+}
+
+### Update product (PUT)
+PUT https://fakestoreapi.com/products/7
+Content-Type: application/json
+
+{
+    "title": "test product updated",
+    "price": 13.5,
+    "description": "lorem ipsum set updated",
+    "image": "https://i.pravatar.cc",
+    "category": "electronic"
+}
+
+### Delete product
+DELETE https://fakestoreapi.com/products/6
